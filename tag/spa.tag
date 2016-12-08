@@ -32,7 +32,9 @@
                 self.graph.addNode(tgt)
             }
             self.graph.addLink(src, tgt, rel);
-            self.model = {}
+            self.sourcename.value=''
+            self.relationname.value=''
+            self.targetname.value=''
         }
 
         this.on('mount', function () {
