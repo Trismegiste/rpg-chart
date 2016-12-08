@@ -2,7 +2,7 @@
  * Directed Graph for d3js
  */
 
-var Digraph = function () {
+var Digraph = function (container) {
 
     // Add and remove elements on the graph object
     this.addNode = function (id) {
@@ -72,7 +72,7 @@ var Digraph = function () {
 
     var color = d3.scale.category10();
 
-    var vis = d3.select("body")
+    var vis = d3.select(container)
             .append("svg:svg")
             .attr("width", w)
             .attr("height", h)
