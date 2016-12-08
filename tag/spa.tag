@@ -5,11 +5,11 @@
             <form onsubmit="{
                         onAddVertex
                     }" class="pure-form">
-                <input type="text" class="pure-input-1" placeholder="Source"
+                <input type="text" class="pure-input-1" placeholder="Source" required autocomplete="off"
                        name="sourcename" value="{model.source}"/>
-                <input type="text" class="pure-input-1" placeholder="Relation"
+                <input type="text" class="pure-input-1" placeholder="Relation" autocomplete="off"
                        name="relationname" value="{model.relation}"/>
-                <input type="text" class="pure-input-1"  placeholder="Target"
+                <input type="text" class="pure-input-1" placeholder="Target" required autocomplete="off"
                        name="targetname" value="{model.target}"/>
                 <button class="pure-button pure-button-primary">Add</button>
             </form>
@@ -18,7 +18,7 @@
 
     <script>
         this.graph;
-        this.model = {source: '', target: '', relation: ''}
+        this.model = {}
         var self = this
 
         onAddVertex() {
@@ -32,13 +32,18 @@
                 self.graph.addNode(tgt)
             }
             self.graph.addLink(src, tgt, rel);
+            self.model = {}
         }
 
         this.on('mount', function () {
             var w = document.getElementById('chart').clientWidth
             var h = window.innerHeight * 0.8
             self.graph = new Digraph("#chart", w, h, function (d) {
-                self.model.source = d.id
+                if (!self.sourcename.value) {
+                    self.model.source = d.id
+                } else {
+                    self.model.target = d.id
+                }
                 self.update()
             });
 
