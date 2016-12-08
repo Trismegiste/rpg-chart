@@ -2,7 +2,7 @@
  * Directed Graph for d3js
  */
 
-var Digraph = function (container) {
+var Digraph = function (container, width, height) {
 
     // Add and remove elements on the graph object
     this.addNode = function (id) {
@@ -66,19 +66,17 @@ var Digraph = function (container) {
         ;
     };
 
+    console.log(window.innerHeight, window.innerWidth)
     // set up the D3 visualisation in the specified element
-    var w = 960,
-            h = 450;
-
     var color = d3.scale.category10();
 
     var vis = d3.select(container)
             .append("svg:svg")
-            .attr("width", w)
-            .attr("height", h)
+            .attr("width", width)
+            .attr("height", height)
             .attr("id", "svg")
             .attr("pointer-events", "all")
-            .attr("viewBox", "0 0 " + w + " " + h)
+            .attr("viewBox", "0 0 " + width + " " + height)
             .attr("perserveAspectRatio", "xMinYMid")
             .append('svg:g');
 
@@ -239,7 +237,7 @@ var Digraph = function (container) {
                 .linkDistance(function (d) {
                     return 130
                 })
-                .size([w, h])
+                .size([width, height])
                 .start();
     };
 
