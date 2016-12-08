@@ -9,8 +9,8 @@
         <link rel="stylesheet" href="./css/main.css"/>
         <style>
             .link {
-                stroke: #2E2E2E;
-                stroke-width: 2px;
+                stroke: #ccc;
+                stroke-width: 1px;
             }
 
             .node {
@@ -116,6 +116,20 @@
                         .attr("perserveAspectRatio", "xMinYMid")
                         .append('svg:g');
 
+                vis.append('defs').append('marker')
+                        .attr({'id': 'arrowhead',
+                            'viewBox': '-0 -5 10 10',
+                            'refX': 25,
+                            'refY': 0,
+                            'orient': 'auto',
+                            'markerWidth': 10,
+                            'markerHeight': 10,
+                            'xoverflow': 'visible'})
+                        .append('svg:path')
+                        .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
+                        .attr('fill', '#ccc')
+                        .attr('stroke', '#ccc');
+
                 vis.append("g").attr("id", "links-layer")
                 vis.append("g").attr("id", "nodes-layer")
 
@@ -137,7 +151,9 @@
                             .attr("stroke-width", function (d) {
                                 return d.value / 10;
                             })
-                            .attr("class", "link");
+                            .attr("class", "link")
+                            .attr('marker-end', 'url(#arrowhead)')
+
                     link.append("title")
                             .text(function (d) {
                                 return d.value;
@@ -199,7 +215,7 @@
                             .charge(-500)
                             .theta(0.1)
                             .linkDistance(function (d) {
-                                return 100
+                                return 130
                             })
                             .size([w, h])
                             .start();
