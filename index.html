@@ -22,7 +22,7 @@
                 font-family: "Lucida Grande", "Droid Sans", Arial, Helvetica, sans-serif;
                 font-weight: normal;
                 stroke-width: .5;
-                font-size: 14px;
+                font-size: 18px;
             }
         </style>
     </head>
@@ -154,7 +154,7 @@
                             .call(force.drag);
 
                     nodeEnter.append("svg:circle")
-                            .attr("r", 12)
+                            .attr("r", 15)
                             .attr("id", function (d) {
                                 return "Node;" + d.id;
                             })
@@ -165,8 +165,8 @@
 
                     nodeEnter.append("svg:text")
                             .attr("class", "textClass")
-                            .attr("x", 14)
-                            .attr("y", ".31em")
+                            .attr("x", 0)
+                            .attr("y", 0)
                             .text(function (d) {
                                 return d.id;
                             });
