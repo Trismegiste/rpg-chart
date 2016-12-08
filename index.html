@@ -152,15 +152,12 @@
                             .attr("class", "link")
                             .attr('marker-end', 'url(#arrowhead)')
 
-                    link.append("title")
-                            .text(function (d) {
-                                return d.value;
-                            });
-
                     link.exit().remove();
 
                     var edgepaths = vis.selectAll(".edgepath")
-                            .data(links)
+                            .data(links, function (d) {
+                                return 'edgepath-' + d.source.id + "-" + d.target.id;
+                            });
 
                     edgepaths.enter()
                             .append('path')
@@ -173,29 +170,30 @@
                                 'fill': 'blue',
                                 'stroke': 'red',
                                 'id': function (d, i) {
-                                    return 'edgepath' + i
+                                    return 'edgepath-' + d.source.id + "-" + d.target.id;
                                 }})
                             .style("pointer-events", "none");
                     edgepaths.exit().remove();
 
                     var edgelabels = vis.selectAll(".edgelabel")
-                            .data(links)
+                            .data(links, function (d) {
+                                return 'edgelabel-' + d.source.id + "-" + d.target.id;
+                            })
 
                     edgelabels.enter()
                             .append('text')
                             .style("pointer-events", "none")
                             .attr({'class': 'edgelabel',
                                 'id': function (d, i) {
-                                    return 'edgelabel' + i
+                                    return 'edgelabel-' + d.source.id + "-" + d.target.id;
                                 },
-                                'dx': 80,
+                                'dx': 50,
                                 'dy': 0,
                                 'font-size': 10,
-                                'fill': '#aaa'});
-
-                    edgelabels.append('textPath')
+                                'fill': '#aaa'})
+                            .append('textPath')
                             .attr('xlink:href', function (d, i) {
-                                return '#edgepath' + i
+                                return '#edgepath-' + d.source.id + "-" + d.target.id;
                             })
                             .style("pointer-events", "none")
                             .text(function (d, i) {
@@ -317,7 +315,7 @@
                 function nextval()
                 {
                     step++;
-                    return 2000 + (1500 * step); // initial time, wait time
+                    return 5000 + (1500 * step); // initial time, wait time
                 }
 
                 setTimeout(function () {
