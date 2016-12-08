@@ -7,3 +7,21 @@ footer.terminal {
 form {
     margin: 0.6em;
 }
+
+.link {
+    stroke: #ccc;
+    stroke-width: 1px;
+}
+
+.node {
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.textClass {
+    stroke: #323232;
+    font-family: "Lucida Grande", "Droid Sans", Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    stroke-width: .5;
+    font-size: 18px;
+}

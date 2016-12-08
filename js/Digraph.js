@@ -49,7 +49,7 @@ var Digraph = function (container, width, height, onClick) {
         update();
     };
 
-    this.nodeExists = function(id) {
+    this.nodeExists = function (id) {
         return findNode(id)
     }
 
@@ -117,6 +117,9 @@ var Digraph = function (container, width, height, onClick) {
                 })
                 .attr("class", "link")
                 .attr('marker-end', 'url(#arrowhead)')
+                .on('click', function (d) {
+                    console.log(d)
+                })
 
         link.exit().remove();
 
