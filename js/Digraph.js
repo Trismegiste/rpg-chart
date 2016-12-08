@@ -138,7 +138,7 @@ var Digraph = function (container, width, height) {
                 .style("pointer-events", "none");
         edgepaths.exit().remove();
 
-        var edgelabels = vis.selectAll(".edgelabel")
+        var edgelabels = vis.select('#links-layer').selectAll(".edgelabel")
                 .data(links, function (d) {
                     return 'edgelabel-' + d.source.id + "-" + d.target.id;
                 })
