@@ -3,3 +3,7 @@ footer.terminal {
     font-size: 60%;
     text-align: center;
 }
+
+form {
+    margin: 0.6em;
+}

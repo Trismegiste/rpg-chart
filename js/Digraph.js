@@ -66,7 +66,6 @@ var Digraph = function (container, width, height) {
         ;
     };
 
-    console.log(window.innerHeight, window.innerWidth)
     // set up the D3 visualisation in the specified element
     var color = d3.scale.category10();
 
