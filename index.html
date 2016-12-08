@@ -195,11 +195,11 @@
 
                     // Restart the force layout.
                     force
-                            .gravity(.01)
-                            .charge(-80000)
-                            .friction(0)
+                            .gravity(0.05)
+                            .charge(-500)
+                            .theta(0.1)
                             .linkDistance(function (d) {
-                                return d.value * 10
+                                return 100
                             })
                             .size([w, h])
                             .start();
