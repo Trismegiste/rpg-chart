@@ -21,6 +21,15 @@
         this.model = {}
         var self = this
 
+        onClickVertex(d) {
+            if (!self.sourcename.value) {
+                self.model.source = d.id
+            } else {
+                self.model.target = d.id
+            }
+            self.update()
+        }
+
         onAddVertex() {
             var src = self.sourcename.value;
             var rel = self.relationname.value;
@@ -32,22 +41,15 @@
                 self.graph.addNode(tgt)
             }
             self.graph.addLink(src, tgt, rel);
-            self.sourcename.value=''
-            self.relationname.value=''
-            self.targetname.value=''
+            self.sourcename.value = ''
+            self.relationname.value = ''
+            self.targetname.value = ''
         }
 
         this.on('mount', function () {
             var w = document.getElementById('chart').clientWidth
             var h = window.innerHeight * 0.8
-            self.graph = new Digraph("#chart", w, h, function (d) {
-                if (!self.sourcename.value) {
-                    self.model.source = d.id
-                } else {
-                    self.model.target = d.id
-                }
-                self.update()
-            });
+            self.graph = new Digraph("#chart", w, h, self.onClickVertex);
 
             self.graph.addNode('Sophia');
             self.graph.addNode('Daniel');
