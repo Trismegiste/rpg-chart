@@ -190,14 +190,14 @@
                                 'dx': 50,
                                 'dy': 0,
                                 'font-size': 10,
-                                'fill': '#aaa'})
+                                'fill': '#777'})
                             .append('textPath')
                             .attr('xlink:href', function (d, i) {
                                 return '#edgepath-' + d.source.id + "-" + d.target.id;
                             })
                             .style("pointer-events", "none")
-                            .text(function (d, i) {
-                                return 'label ' + i
+                            .text(function (d) {
+                                return d.value
                             });
                     edgelabels.exit().remove()
 
@@ -278,7 +278,6 @@
                             .start();
                 };
 
-
                 // Make it all go
                 update();
             }
@@ -298,17 +297,17 @@
                 graph.addNode('Mason');
                 graph.addNode('Emma');
                 graph.addNode('Alex');
-                graph.addLink('Alex', 'Ryan', '20');
-                graph.addLink('Sophia', 'Ryan', '20');
-                graph.addLink('Daniel', 'Ryan', '20');
-                graph.addLink('Ryan', 'Lila', '30');
-                graph.addLink('Lila', 'Suzie', '20');
-                graph.addLink('Suzie', 'Riley', '10');
-                graph.addLink('Suzie', 'Grace', '30');
-                graph.addLink('Grace', 'Dylan', '10');
-                graph.addLink('Dylan', 'Mason', '20');
-                graph.addLink('Dylan', 'Emma', '20');
-                graph.addLink('Emma', 'Mason', '10');
+                graph.addLink('Alex', 'Ryan', 'ami');
+                graph.addLink('Sophia', 'Ryan', 'stalke');
+                graph.addLink('Daniel', 'Ryan', 'enemi');
+                graph.addLink('Ryan', 'Lila', 'surveille');
+                graph.addLink('Lila', 'Suzie', 'boz');
+                graph.addLink('Suzie', 'Riley', 'couille');
+                graph.addLink('Suzie', 'Grace', 'fait partie');
+                graph.addLink('Grace', 'Dylan', 'wesh');
+                graph.addLink('Dylan', 'Mason', 'truc');
+                graph.addLink('Dylan', 'Emma', 'boz boz');
+                graph.addLink('Emma', 'Mason', 'tei');
 
                 // callback for the changes in the network
                 var step = -1;
@@ -348,11 +347,6 @@
 
             drawGraph();
 
-            function addNodes() {
-                d3.select("svg")
-                        .remove();
-                drawGraph();
-            }
         </script>
     </body>
 </html>
