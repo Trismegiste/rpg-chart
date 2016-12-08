@@ -5,24 +5,42 @@
             <form onsubmit="{
                         onAddVertex
                     }" class="pure-form">
-                <input type="text" class="pure-input-1" name="vertexname"/>
+                <input type="text" class="pure-input-1" placeholder="Source"
+                       name="sourcename" value="{model.source}"/>
+                <input type="text" class="pure-input-1" placeholder="Relation"
+                       name="relationname" value="{model.relation}"/>
+                <input type="text" class="pure-input-1"  placeholder="Target"
+                       name="targetname" value="{model.target}"/>
                 <button class="pure-button pure-button-primary">Add</button>
             </form>
         </div>
     </div>
 
     <script>
-        var graph;
+        this.graph;
+        this.model = {source: '', target: '', relation: ''}
         var self = this
 
         onAddVertex() {
-            self.graph.addNode(self.vertexname.value)
+            var src = self.sourcename.value;
+            var rel = self.relationname.value;
+            var tgt = self.targetname.value;
+            if (!self.graph.nodeExists(src)) {
+                self.graph.addNode(src)
+            }
+            if (!self.graph.nodeExists(tgt)) {
+                self.graph.addNode(tgt)
+            }
+            self.graph.addLink(src, tgt, rel);
         }
 
         this.on('mount', function () {
             var w = document.getElementById('chart').clientWidth
             var h = window.innerHeight * 0.8
-            self.graph = new Digraph("#chart", w, h);
+            self.graph = new Digraph("#chart", w, h, function (d) {
+                self.model.source = d.id
+                self.update()
+            });
 
             self.graph.addNode('Sophia');
             self.graph.addNode('Daniel');

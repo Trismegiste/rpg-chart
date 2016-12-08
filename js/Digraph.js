@@ -2,7 +2,7 @@
  * Directed Graph for d3js
  */
 
-var Digraph = function (container, width, height) {
+var Digraph = function (container, width, height, onClick) {
 
     // Add and remove elements on the graph object
     this.addNode = function (id) {
@@ -48,6 +48,10 @@ var Digraph = function (container, width, height) {
         links.push({"source": findNode(source), "target": findNode(target), "value": value});
         update();
     };
+
+    this.nodeExists = function(id) {
+        return findNode(id)
+    }
 
     var findNode = function (id) {
         for (var i in nodes) {
@@ -170,6 +174,7 @@ var Digraph = function (container, width, height) {
 
         var nodeEnter = node.enter().append("g")
                 .attr("class", "node")
+                .on('click', onClick)
                 .call(force.drag);
 
         nodeEnter.append("svg:circle")
